@@ -14,7 +14,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-브라우저에서 [http://localhost:3000](http://localhost:3000) 접속 → `/gate`에서 인증번호 입력.
+브라우저에서 [http://localhost:3022](http://localhost:3022) 접속 → `/gate`에서 인증번호 입력.
 
 ## Access Gate (인증번호)
 
