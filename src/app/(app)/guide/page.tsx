@@ -1,50 +1,12 @@
 import Link from "next/link";
 
+import QuickCommandCatalog from "@/components/QuickCommandCatalog";
 import SettingsSectionCard from "@/components/SettingsSection";
-import { quickCommandExamples, tsl8ApAssistParams, tsl8BasicSettings } from "@/content/tsl8";
+import { tsl8ApAssistParams, tsl8BasicSettings } from "@/content/tsl8";
 import { loadTsl6Data } from "@/lib/tsl6";
-
-type CategorySummary = { category: string; count: number; examples: string[] };
-
-function summarizeByCategory(
-  items: Array<{ categoryKo: string; ko: string }>,
-  { maxCategories = 6, maxExamples = 3 }: { maxCategories?: number; maxExamples?: number } = {},
-): CategorySummary[] {
-  const map = new Map<string, { count: number; examples: string[]; seen: Set<string> }>();
-
-  for (const item of items) {
-    const label = item.ko.trim();
-    if (!label) continue;
-    if (label.includes("작업 없음")) continue;
-
-    const category = item.categoryKo.trim() || "기타";
-    const entry = map.get(category) ?? {
-      count: 0,
-      examples: [],
-      seen: new Set<string>(),
-    };
-
-    entry.count += 1;
-    if (entry.examples.length < maxExamples && !entry.seen.has(label)) {
-      entry.examples.push(label);
-      entry.seen.add(label);
-    }
-
-    map.set(category, entry);
-  }
-
-  return [...map.entries()]
-    .map(([category, data]) => ({ category, count: data.count, examples: data.examples }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, maxCategories);
-}
 
 export default async function GuidePage() {
   const tsl6 = await loadTsl6Data();
-  const triggerSummary = summarizeByCategory(tsl6.entities);
-  const actionSummary = summarizeByCategory(
-    tsl6.functions.filter((f) => !f.prohibited),
-  );
 
   const basicById = new Map(tsl8BasicSettings.rows.map((r) => [r.id, r] as const));
   const recommendedBasics = [
@@ -88,7 +50,10 @@ export default async function GuidePage() {
         </h2>
         <p className="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
           아래는 <span className="font-semibold">입문용으로 자주 쓰는</span> 항목을
-          추려 정리한 예시입니다. 차량/지역 법규/개인 취향에 따라 달라질 수 있어요.
+          추려 정리한 예시입니다. 앱에서 항목을 찾기 쉽도록{" "}
+          <span className="font-semibold">중국어 원문</span>과{" "}
+          <span className="font-semibold">앱 번역(기존 표기)</span>도 같이 표기합니다.
+          차량/지역 법규/개인 취향에 따라 달라질 수 있어요.
         </p>
 
         <div className="mt-4 grid gap-3">
@@ -102,6 +67,14 @@ export default async function GuidePage() {
                   <div className="text-sm font-extrabold text-slate-900 dark:text-slate-50">
                     {row.label}
                   </div>
+                  {(row.labelZh || row.labelKoApp) ? (
+                    <div className="mt-1 grid gap-1 text-xs text-slate-500 dark:text-slate-400">
+                      {row.labelZh ? <div>中文: {row.labelZh}</div> : null}
+                      {row.labelKoApp ? (
+                        <div>앱 표기: {row.labelKoApp}</div>
+                      ) : null}
+                    </div>
+                  ) : null}
                   <div className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
                     {reason}
                   </div>
@@ -131,108 +104,27 @@ export default async function GuidePage() {
 
       <section className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-black/20">
         <h2 className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-50">
-          단축 명령 설정(예시)
+          단축 명령: PDF 기반으로 찾기
         </h2>
         <p className="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
-          앱의 <span className="font-semibold">단축 명령 설정</span> 화면에서,
-          “트리거(조건/버튼)”와 “동작(실행 기능)”을 한 쌍으로 구성합니다.
+          아래 목록은 <span className="font-semibold">TSL6 기능 할당표(PDF)</span>{" "}
+          추출 데이터를 기반으로 구성했습니다. 카테고리는 가로로{" "}
+          <span className="font-semibold">슬라이드</span>할 수 있고, 항목을 누르면
+          텍스트가 <span className="font-semibold">클립보드에 복사</span>됩니다.
         </p>
 
-        <div className="mt-4 grid gap-3">
-          {quickCommandExamples.map((ex, idx) => (
-            <div
-              key={idx}
-              className="rounded-3xl border-2 border-[var(--tsl-teal)]/60 bg-white px-4 py-3 dark:border-[var(--tsl-teal)]/50 dark:bg-black/10"
-            >
-              <div className="text-xs font-bold text-slate-500 dark:text-slate-400">
-                #{idx + 1}
-              </div>
-              <div className="mt-2 grid gap-2">
-                <div className="inline-flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-extrabold text-slate-700 dark:bg-white/10 dark:text-slate-200">
-                    트리거
-                  </span>
-                  <span className="text-sm font-semibold text-slate-900 dark:text-slate-50">
-                    {ex.triggerKo}
-                  </span>
-                </div>
-                <div className="inline-flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-extrabold text-slate-700 dark:bg-white/10 dark:text-slate-200">
-                    동작
-                  </span>
-                  <span className="text-sm font-semibold text-slate-900 dark:text-slate-50">
-                    {ex.actionKo}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="mt-4">
+          <QuickCommandCatalog entities={tsl6.entities} functions={tsl6.functions} />
         </div>
-      </section>
 
-      <section className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-black/20">
-        <h2 className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-50">
-          단축 명령: 트리거/동작 목록(요약)
-        </h2>
-        <p className="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">
-          트리거(조건/이벤트)와 동작(기능) 목록은{" "}
-          <span className="font-semibold">TSL6 기능 할당표(PDF) 추출 데이터</span>를
-          기반으로 정리했습니다. 전체 목록은{" "}
-          <Link href="/share" className="font-semibold underline">
-            셋팅 공유
+        <div className="mt-5">
+          <Link
+            href="/share"
+            className="inline-flex items-center justify-center rounded-2xl bg-[var(--tsl-teal)] px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:brightness-95"
+          >
+            단축 명령 공유 만들기
           </Link>
-          에서 검색 입력창을 눌러 확인할 수 있어요.
-        </p>
-
-        <details className="mt-4 rounded-2xl border border-black/10 bg-slate-50 px-4 py-3 text-sm dark:border-white/10 dark:bg-black/30">
-          <summary className="cursor-pointer select-none font-extrabold text-slate-900 dark:text-slate-50">
-            카테고리/예시 보기
-          </summary>
-
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div>
-              <div className="text-sm font-extrabold text-slate-900 dark:text-slate-50">
-                트리거(조건) TOP
-              </div>
-              <ul className="mt-2 space-y-3">
-                {triggerSummary.map((c) => (
-                  <li key={c.category}>
-                    <div className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                      {c.category}{" "}
-                      <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                        ({c.count})
-                      </span>
-                    </div>
-                    <div className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
-                      {c.examples.join(" · ")}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <div className="text-sm font-extrabold text-slate-900 dark:text-slate-50">
-                동작(기능) TOP
-              </div>
-              <ul className="mt-2 space-y-3">
-                {actionSummary.map((c) => (
-                  <li key={c.category}>
-                    <div className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                      {c.category}{" "}
-                      <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                        ({c.count})
-                      </span>
-                    </div>
-                    <div className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
-                      {c.examples.join(" · ")}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </details>
+        </div>
       </section>
 
       <section className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-black/20">

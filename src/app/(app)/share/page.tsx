@@ -19,7 +19,12 @@ export default async function SharePage() {
 
   const triggerSuggestions = uniq(
     tsl6.entities
-      .map((e) => ({ label: e.ko, meta: e.categoryKo }))
+      .map((e) => ({
+        label: e.ko,
+        meta: `${e.categoryKo} · 中文: ${e.zh}${
+          e.koRaw.trim() && e.koRaw.trim() !== e.ko.trim() ? ` · 앱: ${e.koRaw}` : ""
+        }`,
+      }))
       .filter((i) => i.label && !i.label.includes("작업 없음")),
   );
 
@@ -27,7 +32,9 @@ export default async function SharePage() {
     tsl6.functions
       .map((f) => ({
         label: f.ko,
-        meta: f.prohibited ? `${f.categoryKo} · 사용 금지` : f.categoryKo,
+        meta: `${f.categoryKo}${f.prohibited ? " · 사용 금지" : ""} · 中文: ${f.zh}${
+          f.koRaw.trim() && f.koRaw.trim() !== f.ko.trim() ? ` · 앱: ${f.koRaw}` : ""
+        }`,
       }))
       .filter((i) => i.label && !i.label.includes("작업 없음")),
   );

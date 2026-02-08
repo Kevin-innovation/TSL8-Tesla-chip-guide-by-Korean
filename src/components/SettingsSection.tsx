@@ -38,6 +38,11 @@ export default function SettingsSectionCard({ section }: { section: SettingSecti
                   </div>
                   {row.caution ? <CautionBadge kind={row.caution} /> : null}
                 </div>
+                {row.labelKoApp ? (
+                  <div className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+                    앱 표기: {row.labelKoApp}
+                  </div>
+                ) : null}
                 {row.labelZh ? (
                   <div className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                     {row.labelZh}
@@ -68,4 +73,3 @@ export default function SettingsSectionCard({ section }: { section: SettingSecti
     </section>
   );
 }
-
