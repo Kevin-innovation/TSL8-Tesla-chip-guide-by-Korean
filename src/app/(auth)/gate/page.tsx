@@ -33,7 +33,7 @@ export default async function GatePage() {
             <div className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
               TSL8 설정 가이드 · 단축 명령 공유
               <br />
-              <span className="font-semibold">TK테슬라방 - 하쿠</span>
+              <span className="font-semibold">클럽 테슬라 대경방 by 하쿠</span>
             </div>
           </div>
 

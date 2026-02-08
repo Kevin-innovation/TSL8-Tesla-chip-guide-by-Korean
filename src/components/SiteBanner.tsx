@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import bannerImage from "@/img/banner.png";
+
 export default function SiteBanner({
   containerClassName = "max-w-3xl",
   priority = false,
@@ -13,7 +15,7 @@ export default function SiteBanner({
         <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm dark:border-white/10 dark:bg-black/20">
           <div className="relative h-28 sm:h-40">
             <Image
-              src="/banner.png"
+              src={bannerImage}
               alt="TSL 배너"
               fill
               priority={priority}

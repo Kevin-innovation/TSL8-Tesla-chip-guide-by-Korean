@@ -24,7 +24,7 @@ export default async function AppLayout({
               TSL 셋팅 공유
             </Link>
             <div className="truncate text-xs font-semibold text-white/80">
-              TK테슬라방 - 하쿠
+              클럽 테슬라 대경방 by 하쿠
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-TSL 셋팅 공유 사이트 (TK테슬라방 - 하쿠)
+TSL 셋팅 공유 사이트 (클럽 테슬라 대경방 by 하쿠)
 
 ## Getting Started
 
