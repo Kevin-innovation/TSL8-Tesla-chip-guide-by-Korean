@@ -203,6 +203,41 @@ export default function ShareBuilder({
           subtitle="앱의 ‘단축 명령 설정’ 화면을 참고해, 트리거/동작을 텍스트로 공유할 수 있게 만들었습니다."
         />
 
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <div className="text-xs font-extrabold text-slate-500 dark:text-slate-400">
+            추천 템플릿
+          </div>
+          {quickCommandExamples.map((t) => (
+            <button
+              key={`${t.triggerKo}__${t.actionKo}`}
+              type="button"
+              className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-extrabold text-slate-900 shadow-sm hover:bg-slate-50 dark:border-white/10 dark:bg-black/20 dark:text-slate-50 dark:hover:bg-white/10"
+              onClick={() =>
+                setQuickCommands((prev) => [
+                  ...prev,
+                  { trigger: t.triggerKo, action: t.actionKo },
+                ])
+              }
+            >
+              {t.actionKo}
+            </button>
+          ))}
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-extrabold text-slate-900 shadow-sm hover:bg-slate-50 dark:border-white/10 dark:bg-black/20 dark:text-slate-50 dark:hover:bg-white/10"
+            onClick={() =>
+              setQuickCommands(
+                quickCommandExamples.map((t) => ({
+                  trigger: t.triggerKo,
+                  action: t.actionKo,
+                })),
+              )
+            }
+          >
+            예시로 초기화
+          </button>
+        </div>
+
         <div className="grid gap-4">
           {quickCommands.map((cmd, idx) => (
             <div
@@ -274,4 +309,3 @@ export default function ShareBuilder({
     </div>
   );
 }
-
