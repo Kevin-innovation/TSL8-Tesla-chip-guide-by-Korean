@@ -49,7 +49,7 @@ export default function GateForm() {
           inputMode="numeric"
           autoComplete="one-time-code"
           className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base shadow-sm outline-none ring-[var(--tsl-teal)] focus:ring-2 dark:border-white/10 dark:bg-black/20"
-          placeholder="예: 1234"
+          placeholder="예: 00700"
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />

@@ -11,7 +11,7 @@ export default function SiteBanner({
     <div className="px-4 pt-4">
       <div className={`mx-auto w-full ${containerClassName}`}>
         <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm dark:border-white/10 dark:bg-black/20">
-          <div className="relative h-24 sm:h-32">
+          <div className="relative h-28 sm:h-40">
             <Image
               src="/banner.png"
               alt="TSL 배너"
@@ -26,4 +26,3 @@ export default function SiteBanner({
     </div>
   );
 }
-
