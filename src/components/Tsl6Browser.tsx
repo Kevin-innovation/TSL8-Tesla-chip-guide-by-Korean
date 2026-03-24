@@ -112,7 +112,10 @@ export default function Tsl6Browser({ data }: { data: Tsl6Data }) {
                     ) : null}
                   </div>
                   <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                    {item.zh}
+                    앱 번역: {item.koRaw || item.ko}
+                  </div>
+                  <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    중국어: {item.zh}
                   </div>
                 </li>
               ))}
@@ -123,4 +126,3 @@ export default function Tsl6Browser({ data }: { data: Tsl6Data }) {
     </div>
   );
 }
-

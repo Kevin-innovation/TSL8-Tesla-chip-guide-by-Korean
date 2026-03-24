@@ -172,32 +172,34 @@ export default async function GuidePage() {
           </div>
         </CardHeader>
         <CardContent className="grid gap-3 sm:gap-4 xl:grid-cols-2 2xl:grid-cols-4">
-          {recommendedBasicRows.map(({ row, reason }) => (
-            <div
-              key={row.id}
-              className="rounded-[20px] border border-black/5 bg-slate-50 p-4 sm:rounded-[24px] dark:border-white/10 dark:bg-white/5"
-            >
-              <div className="break-keep text-[1.05rem] leading-7 font-bold text-slate-900 sm:text-lg dark:text-slate-50">
-                {row.label}
-              </div>
-              <div className="mt-2">
-                <div className="flex flex-wrap gap-2">
-                  {row.labelZh ? <Badge variant="secondary">중국어: {row.labelZh}</Badge> : null}
-                  {row.labelKoApp ? (
-                    <Badge variant="secondary">앱 번역: {row.labelKoApp}</Badge>
-                  ) : null}
+          {recommendedBasicRows.map(({ row, reason }) => {
+            const appLabel = row.labelKoApp ?? row.label;
+
+            return (
+              <div
+                key={row.id}
+                className="rounded-[20px] border border-black/5 bg-slate-50 p-4 sm:rounded-[24px] dark:border-white/10 dark:bg-white/5"
+              >
+                <div className="break-keep text-[1.05rem] leading-7 font-bold text-slate-900 sm:text-lg dark:text-slate-50">
+                  {row.label}
                 </div>
-              </div>
-              <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-300">
-                {reason}
-              </p>
-              {row.valueExample ? (
-                <div className="mt-3">
-                  <Badge>권장 예시: {row.valueExample}</Badge>
+                <div className="mt-2">
+                  <div className="flex flex-wrap gap-2">
+                    {row.labelZh ? <Badge variant="secondary">중국어: {row.labelZh}</Badge> : null}
+                    <Badge variant="secondary">앱 번역: {appLabel}</Badge>
+                  </div>
                 </div>
-              ) : null}
-            </div>
-          ))}
+                <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-300">
+                  {reason}
+                </p>
+                {row.valueExample ? (
+                  <div className="mt-3">
+                    <Badge>권장 예시: {row.valueExample}</Badge>
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
         </CardContent>
       </Card>
 

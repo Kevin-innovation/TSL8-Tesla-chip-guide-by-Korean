@@ -204,8 +204,7 @@ export default function QuickCommandCatalog({
       <div className="grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
         {visible.map((item) => {
           const koRaw = normalize(item.koRaw);
-          const ko = normalize(item.ko);
-          const showRaw = koRaw && koRaw !== ko;
+          const appLabel = koRaw || item.ko;
 
           return (
             <button
@@ -231,11 +230,9 @@ export default function QuickCommandCatalog({
                   <div className="text-base font-extrabold text-slate-900 dark:text-slate-50">
                     {item.ko}
                   </div>
-                  {showRaw ? (
-                    <div className="mt-2">
-                      <Badge variant="secondary">앱 번역: {item.koRaw}</Badge>
-                    </div>
-                  ) : null}
+                  <div className="mt-2">
+                    <Badge variant="secondary">앱 번역: {appLabel}</Badge>
+                  </div>
                   <div className="mt-2">
                     <Badge variant="secondary">중국어: {item.zh}</Badge>
                   </div>
