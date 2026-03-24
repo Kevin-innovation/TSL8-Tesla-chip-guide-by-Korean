@@ -151,7 +151,7 @@ export default function QuickCommandCatalog({
         />
       </label>
 
-      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 xl:flex-wrap xl:overflow-visible">
+      <div className="flex flex-wrap gap-2">
         <Button
           onClick={() => {
             setCategory("전체");
@@ -159,7 +159,7 @@ export default function QuickCommandCatalog({
           }}
           variant={safeCategory === "전체" ? "default" : "secondary"}
           size="sm"
-          className={`shrink-0 rounded-full ${
+          className={`rounded-full ${
             safeCategory === "전체"
               ? ""
               : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15"
@@ -176,7 +176,7 @@ export default function QuickCommandCatalog({
             }}
             variant={safeCategory === c.name ? "default" : "secondary"}
             size="sm"
-            className={`shrink-0 rounded-full ${
+            className={`rounded-full ${
               safeCategory === c.name
                 ? ""
                 : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15"

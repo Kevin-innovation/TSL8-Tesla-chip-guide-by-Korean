@@ -91,19 +91,19 @@ export default async function GuidePage() {
         className="scroll-mt-32 overflow-hidden border-none bg-[linear-gradient(135deg,rgba(12,30,34,0.96),rgba(26,54,60,0.92)_42%,rgba(104,182,166,0.9))] text-white shadow-[0_28px_70px_rgba(15,61,53,0.22)]"
       >
         <div className="grid gap-5 px-5 py-5 sm:gap-8 sm:px-8 sm:py-8 2xl:grid-cols-[minmax(0,1fr)_620px] 2xl:items-center">
-          <div>
+          <div className="min-w-0">
             <Badge className="bg-white/12 text-white ring-1 ring-white/15">
               TSL8 설정 안내
             </Badge>
-            <h1 className="mt-3 text-[3rem] leading-none font-black tracking-tight sm:mt-4 sm:text-5xl xl:text-[3.75rem]">
+            <h1 className="mt-3 max-w-full break-keep text-[2.45rem] leading-none font-black tracking-tight sm:mt-4 sm:text-5xl xl:text-[3.75rem]">
               TSL8 설정 안내
             </h1>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-6 sm:flex sm:flex-wrap">
+            <div className="mt-5 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:mt-6 sm:flex sm:flex-wrap">
               <a
                 href="#all"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "h-12 rounded-full px-4 text-base bg-white text-slate-950 hover:bg-white/95 sm:h-14 sm:px-6 sm:text-lg",
+                  "h-12 w-full rounded-full px-4 text-base bg-white text-slate-950 hover:bg-white/95 sm:h-14 sm:w-auto sm:px-6 sm:text-lg",
                 )}
               >
                 전체 설정 보기
@@ -112,7 +112,7 @@ export default async function GuidePage() {
                 href="#quick-commands"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "lg" }),
-                  "h-12 rounded-full px-4 text-base border border-white/18 bg-white/10 text-white hover:bg-white/16 sm:h-14 sm:px-6 sm:text-lg",
+                  "h-12 w-full rounded-full px-4 text-base border border-white/18 bg-white/10 text-white hover:bg-white/16 sm:h-14 sm:w-auto sm:px-6 sm:text-lg",
                 )}
               >
                 명령 찾기
@@ -120,7 +120,7 @@ export default async function GuidePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 min-[380px]:grid-cols-2">
             {overviewStats.map((item) => {
               const Icon = item.icon;
               return (
@@ -177,11 +177,11 @@ export default async function GuidePage() {
               key={row.id}
               className="rounded-[20px] border border-black/5 bg-slate-50 p-4 sm:rounded-[24px] dark:border-white/10 dark:bg-white/5"
             >
-              <div className="whitespace-nowrap text-[1.05rem] font-bold text-slate-900 sm:text-lg dark:text-slate-50">
+              <div className="break-keep text-[1.05rem] leading-7 font-bold text-slate-900 sm:text-lg dark:text-slate-50">
                 {row.label}
               </div>
-              <div className="no-scrollbar -mx-1 mt-2 overflow-x-auto px-1 pb-1">
-                <div className="flex min-w-max gap-2">
+              <div className="mt-2">
+                <div className="flex flex-wrap gap-2">
                   {row.labelZh ? <Badge variant="secondary">중국어: {row.labelZh}</Badge> : null}
                   {row.labelKoApp ? (
                     <Badge variant="secondary">앱 번역: {row.labelKoApp}</Badge>

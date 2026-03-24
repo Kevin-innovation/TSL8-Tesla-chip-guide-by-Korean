@@ -80,11 +80,14 @@ export default function AppHeader() {
     <header className="sticky top-0 z-30 border-b border-black/5 bg-[linear-gradient(180deg,rgba(104,182,166,0.94),rgba(96,177,163,0.92))] text-white shadow-[0_16px_40px_rgba(15,61,53,0.16)] backdrop-blur-xl dark:border-white/10 lg:bg-[color:rgba(104,182,166,0.92)]">
       <div className="mx-auto flex w-full max-w-[112rem] flex-col gap-3 px-4 py-3 sm:px-5 lg:gap-4 lg:px-8 lg:py-4 xl:px-10 2xl:px-12">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="min-w-0">
-            <Link href="/guide" className="block truncate text-[1.95rem] leading-none font-black tracking-tight lg:text-3xl">
+          <div className="min-w-0 max-w-full">
+            <Link
+              href="/guide"
+              className="block max-w-full break-keep text-[2.15rem] leading-none font-black tracking-tight sm:text-[2.35rem] lg:text-3xl"
+            >
               TSL 설정 가이드
             </Link>
-            <div className="mt-1 truncate text-[0.96rem] font-semibold text-white/88 lg:text-base">
+            <div className="mt-1 max-w-full break-keep text-[0.96rem] leading-6 font-semibold text-white/88 sm:text-[1.02rem] lg:text-base">
               🚗 대구•경북 테슬라 오너모임 by 하쿠
             </div>
           </div>
