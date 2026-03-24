@@ -63,11 +63,18 @@ export default function AppHeader() {
   const isGuidePath = pathname === "/guide" || pathname.startsWith("/guide/");
 
   const [hash, setHash] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const update = () => setHash(window.location.hash || "");
     update();
     window.addEventListener("hashchange", update);
     return () => window.removeEventListener("hashchange", update);
+  }, []);
+  useEffect(() => {
+    const updateScroll = () => setIsScrolled(window.scrollY > 24);
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    return () => window.removeEventListener("scroll", updateScroll);
   }, []);
 
   const active = isGuidePath ? hash : "";
@@ -78,16 +85,31 @@ export default function AppHeader() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-black/5 bg-[linear-gradient(180deg,rgba(104,182,166,0.94),rgba(96,177,163,0.92))] text-white shadow-[0_16px_40px_rgba(15,61,53,0.16)] backdrop-blur-xl dark:border-white/10 lg:bg-[color:rgba(104,182,166,0.92)]">
-      <div className="mx-auto flex w-full max-w-[112rem] flex-col gap-3 px-4 py-3 sm:px-5 lg:gap-4 lg:px-8 lg:py-4 xl:px-10 2xl:px-12">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+      <div
+        className={cn(
+          "mx-auto flex w-full max-w-[112rem] flex-col px-4 py-2.5 transition-all duration-300 sm:px-5 lg:gap-4 lg:px-8 lg:py-4 xl:px-10 2xl:px-12",
+          isScrolled ? "gap-1.5" : "gap-2.5",
+        )}
+      >
+        <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0 max-w-full">
             <Link
               href="/guide"
-              className="block max-w-full break-keep text-[2.15rem] leading-none font-black tracking-tight sm:text-[2.35rem] lg:text-3xl"
+              className={cn(
+                "block max-w-full break-keep leading-none font-black tracking-tight transition-all duration-300 sm:text-[2.35rem] lg:text-3xl",
+                isScrolled ? "text-[1.4rem]" : "text-[1.72rem]",
+              )}
             >
               TSL 설정 가이드
             </Link>
-            <div className="mt-1 max-w-full break-keep text-[0.96rem] leading-6 font-semibold text-white/88 sm:text-[1.02rem] lg:text-base">
+            <div
+              className={cn(
+                "max-w-full break-keep font-semibold text-white/88 transition-all duration-300 sm:text-[1.02rem] lg:text-base",
+                isScrolled
+                  ? "mt-0 max-h-0 overflow-hidden opacity-0"
+                  : "mt-1 max-h-10 text-[0.9rem] leading-6 opacity-100",
+              )}
+            >
               🚗 대구•경북 테슬라 오너모임 by 하쿠
             </div>
           </div>
@@ -112,7 +134,14 @@ export default function AppHeader() {
       </div>
 
       <div className="lg:hidden">
-        <div className="mx-auto grid w-full max-w-[112rem] grid-cols-2 gap-2 px-4 pb-3 sm:px-5 lg:px-8 xl:px-10 2xl:px-12">
+        <div
+          className={cn(
+            "mx-auto grid w-full max-w-[112rem] grid-cols-2 gap-2 overflow-hidden px-4 transition-all duration-300 sm:px-5 lg:px-8 xl:px-10 2xl:px-12",
+            isScrolled
+              ? "max-h-0 translate-y-[-6px] pb-0 opacity-0 pointer-events-none"
+              : "max-h-32 pb-2 opacity-100",
+          )}
+        >
           <MobileLink href="/guide#recommended" label="추천 설정" active={isGuide} />
           <MobileLink href="/guide#all" label="전체 설정" active={isAll} />
           <MobileLink
