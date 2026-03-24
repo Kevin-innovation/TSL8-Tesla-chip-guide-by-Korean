@@ -1,16 +1,20 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { LogOut } from "lucide-react";
 import { useTransition } from "react";
+
+import { Button } from "@/components/ui/button";
 
 export default function LogoutButton() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   return (
-    <button
-      type="button"
-      className="inline-flex items-center justify-center rounded-full bg-white/15 px-3 py-1.5 text-sm font-medium text-white hover:bg-white/20 disabled:opacity-60"
+    <Button
+      variant="secondary"
+      size="sm"
+      className="rounded-full bg-white text-slate-950 hover:bg-white"
       disabled={isPending}
       onClick={() => {
         startTransition(async () => {
@@ -22,8 +26,8 @@ export default function LogoutButton() {
         });
       }}
     >
+      <LogOut className="size-3.5" />
       {isPending ? "로그아웃…" : "로그아웃"}
-    </button>
+    </Button>
   );
 }
-

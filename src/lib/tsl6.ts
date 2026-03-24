@@ -38,8 +38,8 @@ function normalizeKorean(koRaw: string): string {
     [/길게 클릭/g, "길게 누르기"],
     [/짧게 클릭/g, "짧게 누르기"],
     [/길게 누르고 놓기/g, "길게 누른 뒤 놓기"],
-    [/짧게 누르기\\+길게 누르기/g, "짧게 누른 뒤 길게 누르기"],
-    [/짧게 클릭\\+길게 클릭/g, "짧게 누른 뒤 길게 누르기"],
+    [/짧게 누르기\+길게 누르기/g, "짧게 누른 뒤 길게 누르기"],
+    [/짧게 클릭\+길게 클릭/g, "짧게 누른 뒤 길게 누르기"],
     [/AP따라가기/g, "AP 따라가기"],
     [/조그휠/g, "스크롤휠"],
     [/스티어링 휠/g, "핸들 스크롤휠"],
@@ -56,8 +56,8 @@ function normalizeKorean(koRaw: string): string {
 
 function stripLeadingNumberDot(text: string): string {
   return text
-    .replace(/^\\d+\\.\\s*/, "")
-    .replace(/\\s+\\d+\\.$/, "")
+    .replace(/^\d+\.\s*/, "")
+    .replace(/\s+\d+\.$/, "")
     .trim();
 }
 
@@ -102,7 +102,7 @@ function splitZhKoPairs(line: string): {
 }
 
 function isHeading(zh: string, ko: string): boolean {
-  if (!/^\\d+\\./.test(zh)) return false;
+  if (!/^\d+\./.test(zh)) return false;
   if (!ko) return false;
   // "1. 좌석 제어" 같은 형태
   return true;
@@ -114,9 +114,9 @@ function makeId(prefix: string, idx: number): string {
 
 export function parseTsl6Extract(raw: string): Tsl6Data {
   const updatedAt =
-    raw.match(/Update\\s+(\\d{4}\\.\\d{2}\\.\\d{2})/)?.[1] ?? undefined;
+    raw.match(/Update\s+(\d{4}\.\d{2}\.\d{2})/)?.[1] ?? undefined;
   const otaVersion =
-    raw.match(/TSL6\\s+-\\s+OTA\\s+([^\\s]+)\\s+기준/)?.[1] ?? undefined;
+    raw.match(/TSL6\s+-\s+OTA\s+([^\s]+)\s+기준/)?.[1] ?? undefined;
 
   const functions: Tsl6Item[] = [];
   const entities: Tsl6Item[] = [];
@@ -129,7 +129,7 @@ export function parseTsl6Extract(raw: string): Tsl6Data {
   let fnIdx = 0;
   let entIdx = 0;
 
-  for (const line of raw.split(/\\r?\\n/)) {
+  for (const line of raw.split(/\r?\n/)) {
     const parsed = splitZhKoPairs(line);
     if (!parsed) continue;
 

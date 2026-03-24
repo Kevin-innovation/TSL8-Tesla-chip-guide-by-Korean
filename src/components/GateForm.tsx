@@ -1,7 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 import { useState, useTransition } from "react";
+
+import { Button } from "@/components/ui/button";
 
 export default function GateForm() {
   const router = useRouter();
@@ -11,7 +14,7 @@ export default function GateForm() {
 
   return (
     <form
-      className="mt-6 grid gap-3"
+      className="mt-6 grid gap-4"
       onSubmit={(e) => {
         e.preventDefault();
         setError(null);
@@ -42,13 +45,13 @@ export default function GateForm() {
       }}
     >
       <label className="grid gap-1">
-        <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">
           인증 번호
         </span>
         <input
           inputMode="numeric"
           autoComplete="one-time-code"
-          className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-base shadow-sm outline-none ring-[var(--tsl-teal)] focus:ring-2 dark:border-white/10 dark:bg-black/20"
+          className="h-14 w-full rounded-2xl border border-slate-200 bg-white px-4 text-lg font-semibold shadow-sm outline-none ring-[var(--tsl-teal)] focus:ring-2 dark:border-white/10 dark:bg-black/20"
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
@@ -58,15 +61,17 @@ export default function GateForm() {
         <p className="text-sm font-medium text-rose-600">{error}</p>
       ) : null}
 
-      <button
+      <Button
         type="submit"
+        size="lg"
+        className="rounded-2xl"
         disabled={isPending}
-        className="h-12 rounded-2xl bg-[var(--tsl-teal)] px-4 text-base font-semibold text-white shadow-sm hover:brightness-95 disabled:opacity-60"
       >
+        <ArrowRight className="size-4" />
         {isPending ? "확인 중…" : "입장하기"}
-      </button>
+      </Button>
 
-      <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+      <p className="text-sm leading-6 text-slate-500 dark:text-slate-400">
         로그인은 없고, 공유된 인증 번호로만 접근할 수 있습니다.
       </p>
     </form>

@@ -239,7 +239,7 @@ export const tsl8BasicSettings: SettingSection = {
       labelKoApp: "문을 열어 플래그",
       labelZh: "开门双闪灯",
       valueExample: "켜기",
-      help: "문이 열릴 때 비상등을 점멸시키는 옵션입니다.",
+      help: "도어가 열릴 때 주변 차량/보행자에게 알림이 필요할 때 유용합니다.",
     },
     {
       id: "reverse_hazard",

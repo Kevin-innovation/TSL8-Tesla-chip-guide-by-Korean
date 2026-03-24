@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TSL 셋팅 공유",
-  description: "TSL8 설정 가이드 및 셋팅 공유 (클럽 테슬라 대경방 by 하쿠)",
+  title: "TSL 셋팅 가이드",
+  description: "TSL8 설정 가이드 및 단축 명령 가이드 (🚗 대구•경북 테슬라 오너모임 by 하쿠)",
 };
 
 export default function RootLayout({
