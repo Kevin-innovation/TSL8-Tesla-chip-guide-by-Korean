@@ -9,7 +9,7 @@ export default function AppLayout({
     <div className="min-h-dvh bg-[radial-gradient(circle_at_top,_rgba(104,182,166,0.16),_transparent_36%),linear-gradient(180deg,_rgba(255,255,255,0.8),_rgba(247,250,249,1))] dark:bg-[radial-gradient(circle_at_top,_rgba(74,168,151,0.22),_transparent_30%),linear-gradient(180deg,_rgba(7,18,20,0.96),_rgba(7,18,20,1))]">
       <AppHeader />
 
-      <main className="mx-auto w-full max-w-[112rem] px-4 py-6 sm:px-5 lg:px-8 xl:px-10 2xl:px-12">
+      <main className="mx-auto w-full max-w-[112rem] px-4 py-4 sm:px-5 sm:py-6 lg:px-8 xl:px-10 2xl:px-12">
         {children}
       </main>
 

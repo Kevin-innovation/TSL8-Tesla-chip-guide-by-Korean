@@ -47,10 +47,10 @@ function MobileLink({
       aria-current={active ? "page" : undefined}
       className={cn(
         buttonVariants({ variant: active ? "secondary" : "ghost", size: "sm" }),
-        "shrink-0",
+        "h-11 w-full justify-center rounded-2xl px-3 text-sm font-bold",
         active
-          ? "bg-white text-slate-950 hover:bg-white"
-          : "text-white hover:bg-white/15 hover:text-white dark:text-white",
+          ? "bg-white text-slate-950 shadow-sm hover:bg-white"
+          : "bg-white/10 text-white hover:bg-white/15 hover:text-white dark:text-white",
       )}
     >
       {label}
@@ -77,14 +77,14 @@ export default function AppHeader() {
   const isTranslation = isGuidePath && active === "#translation";
 
   return (
-    <header className="sticky top-0 z-30 border-b border-black/5 bg-[color:rgba(104,182,166,0.92)] text-white shadow-[0_16px_40px_rgba(15,61,53,0.16)] backdrop-blur-xl dark:border-white/10">
-      <div className="mx-auto flex w-full max-w-[112rem] flex-col gap-4 px-4 py-4 sm:px-5 lg:px-8 xl:px-10 2xl:px-12">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+    <header className="sticky top-0 z-30 border-b border-black/5 bg-[linear-gradient(180deg,rgba(104,182,166,0.94),rgba(96,177,163,0.92))] text-white shadow-[0_16px_40px_rgba(15,61,53,0.16)] backdrop-blur-xl dark:border-white/10 lg:bg-[color:rgba(104,182,166,0.92)]">
+      <div className="mx-auto flex w-full max-w-[112rem] flex-col gap-3 px-4 py-3 sm:px-5 lg:gap-4 lg:px-8 lg:py-4 xl:px-10 2xl:px-12">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
-            <Link href="/guide" className="block truncate text-2xl font-black tracking-tight lg:text-3xl">
+            <Link href="/guide" className="block truncate text-[1.95rem] leading-none font-black tracking-tight lg:text-3xl">
               TSL 설정 가이드
             </Link>
-            <div className="mt-1 truncate text-sm font-semibold text-white/85 lg:text-base">
+            <div className="mt-1 truncate text-[0.96rem] font-semibold text-white/88 lg:text-base">
               🚗 대구•경북 테슬라 오너모임 by 하쿠
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function AppHeader() {
       </div>
 
       <div className="lg:hidden">
-        <div className="mx-auto flex w-full max-w-[112rem] gap-2 overflow-x-auto px-4 pb-4 sm:px-5 lg:px-8 xl:px-10 2xl:px-12">
+        <div className="mx-auto grid w-full max-w-[112rem] grid-cols-2 gap-2 px-4 pb-3 sm:px-5 lg:px-8 xl:px-10 2xl:px-12">
           <MobileLink href="/guide#recommended" label="추천 설정" active={isGuide} />
           <MobileLink href="/guide#all" label="전체 설정" active={isAll} />
           <MobileLink

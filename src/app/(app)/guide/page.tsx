@@ -85,25 +85,25 @@ export default async function GuidePage() {
   ] as const;
 
   return (
-    <div className="grid gap-6 lg:gap-8">
+    <div className="grid gap-5 sm:gap-6 lg:gap-8">
       <Card
         id="recommended"
         className="scroll-mt-32 overflow-hidden border-none bg-[linear-gradient(135deg,rgba(12,30,34,0.96),rgba(26,54,60,0.92)_42%,rgba(104,182,166,0.9))] text-white shadow-[0_28px_70px_rgba(15,61,53,0.22)]"
       >
-        <div className="grid gap-8 px-6 py-7 sm:px-8 sm:py-8 2xl:grid-cols-[minmax(0,1fr)_620px] 2xl:items-center">
+        <div className="grid gap-5 px-5 py-5 sm:gap-8 sm:px-8 sm:py-8 2xl:grid-cols-[minmax(0,1fr)_620px] 2xl:items-center">
           <div>
             <Badge className="bg-white/12 text-white ring-1 ring-white/15">
               TSL8 설정 안내
             </Badge>
-            <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl xl:text-[3.75rem]">
+            <h1 className="mt-3 text-[3rem] leading-none font-black tracking-tight sm:mt-4 sm:text-5xl xl:text-[3.75rem]">
               TSL8 설정 안내
             </h1>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-6 sm:flex sm:flex-wrap">
               <a
                 href="#all"
                 className={cn(
                   buttonVariants({ size: "lg" }),
-                  "rounded-full bg-white text-slate-950 hover:bg-white/95",
+                  "h-12 rounded-full px-4 text-base bg-white text-slate-950 hover:bg-white/95 sm:h-14 sm:px-6 sm:text-lg",
                 )}
               >
                 전체 설정 보기
@@ -112,7 +112,7 @@ export default async function GuidePage() {
                 href="#quick-commands"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "lg" }),
-                  "rounded-full border border-white/18 bg-white/10 text-white hover:bg-white/16",
+                  "h-12 rounded-full px-4 text-base border border-white/18 bg-white/10 text-white hover:bg-white/16 sm:h-14 sm:px-6 sm:text-lg",
                 )}
               >
                 명령 찾기
@@ -120,19 +120,23 @@ export default async function GuidePage() {
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid grid-cols-2 gap-3">
             {overviewStats.map((item) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.label}
-                  className="rounded-[24px] border border-white/12 bg-white/10 p-5 backdrop-blur"
+                  className="rounded-[22px] border border-white/12 bg-white/10 p-4 backdrop-blur sm:rounded-[24px] sm:p-5"
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <div className="text-base font-semibold text-white/82">{item.label}</div>
-                    <Icon className="size-5 text-white/82" />
+                    <div className="text-sm font-semibold leading-5 text-white/82 sm:text-base">
+                      {item.label}
+                    </div>
+                    <Icon className="size-4 shrink-0 text-white/82 sm:size-5" />
                   </div>
-                  <div className="mt-4 text-4xl font-black tracking-tight">{item.value}</div>
+                  <div className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">
+                    {item.value}
+                  </div>
                 </div>
               );
             })}
@@ -140,9 +144,9 @@ export default async function GuidePage() {
         </div>
       </Card>
 
-      <Card>
+      <Card className="hidden sm:block">
         <CardHeader className="pb-4">
-          <CardTitle className="text-[2rem]">바로가기</CardTitle>
+          <CardTitle className="text-2xl sm:text-[2rem]">바로가기</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {pageLinks.map((item) => (
@@ -164,16 +168,16 @@ export default async function GuidePage() {
         <CardHeader className="pb-4">
           <div className="flex items-center gap-3">
             <BookOpenText className="size-5 text-[var(--tsl-teal)]" />
-            <CardTitle className="text-[2rem]">추천 설정</CardTitle>
+            <CardTitle className="text-2xl sm:text-[2rem]">추천 설정</CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="grid gap-4 xl:grid-cols-2 2xl:grid-cols-4">
+        <CardContent className="grid gap-3 sm:gap-4 xl:grid-cols-2 2xl:grid-cols-4">
           {recommendedBasicRows.map(({ row, reason }) => (
             <div
               key={row.id}
-              className="rounded-[24px] border border-black/5 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5"
+              className="rounded-[20px] border border-black/5 bg-slate-50 p-4 sm:rounded-[24px] dark:border-white/10 dark:bg-white/5"
             >
-              <div className="whitespace-nowrap text-lg font-bold text-slate-900 dark:text-slate-50">
+              <div className="whitespace-nowrap text-[1.05rem] font-bold text-slate-900 sm:text-lg dark:text-slate-50">
                 {row.label}
               </div>
               <div className="no-scrollbar -mx-1 mt-2 overflow-x-auto px-1 pb-1">
