@@ -101,7 +101,7 @@ export default function QuickCommandCatalog({
                 : "text-slate-600 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
             }`}
           >
-            트리거(조건)
+            실행 조건
           </button>
           <button
             type="button"
@@ -116,7 +116,7 @@ export default function QuickCommandCatalog({
                 : "text-slate-600 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
             }`}
           >
-            동작(기능)
+            실행 기능
           </button>
         </div>
 
@@ -131,7 +131,7 @@ export default function QuickCommandCatalog({
                 setLimit(INITIAL_LIMIT);
               }}
             />
-            사용 금지 포함
+            사용 금지 항목도 보기
           </label>
         ) : null}
       </div>
@@ -147,7 +147,7 @@ export default function QuickCommandCatalog({
             setQuery(e.target.value);
             setLimit(INITIAL_LIMIT);
           }}
-          placeholder="한국어/중국어 모두 검색 가능"
+          placeholder="한국어·중국어로 검색"
         />
       </label>
 
@@ -192,12 +192,12 @@ export default function QuickCommandCatalog({
 
       {copied ? (
         <div className="rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-900 dark:bg-emerald-900/20 dark:text-emerald-100">
-          복사됨: {copied}
+          복사 완료: {copied}
         </div>
       ) : null}
 
       <div className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-        표시: {visible.length} / {filtered.length}
+        현재 표시: {visible.length} / {filtered.length}
         {filtered.length > visible.length ? " (더 보기 가능)" : ""}
       </div>
 
@@ -237,7 +237,7 @@ export default function QuickCommandCatalog({
                     </div>
                   ) : null}
                   <div className="mt-2">
-                    <Badge variant="secondary">中文: {item.zh}</Badge>
+                    <Badge variant="secondary">중국어: {item.zh}</Badge>
                   </div>
                 </div>
 

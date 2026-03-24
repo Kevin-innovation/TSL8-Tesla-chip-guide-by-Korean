@@ -17,10 +17,10 @@ import { loadTsl6Data } from "@/lib/tsl6";
 import { cn } from "@/lib/utils";
 
 const translationRules = [
-  "오타와 직역은 실제 차량 사용자가 이해하는 문장으로 정리합니다.",
-  "버튼 조작 표현은 두 번 누르기, 길게 누르기처럼 하나의 기준으로 통일합니다.",
+  "오타나 어색한 직역은 실제 운전자가 바로 이해할 수 있는 한국어로 고칩니다.",
+  "버튼 조작 표현은 두 번 누르기, 길게 누르기처럼 익숙한 말로 맞춥니다.",
   "법규 또는 안전 이슈가 있는 항목은 주의 표시를 유지합니다.",
-  "앱 번역이 어색해도 원문과 함께 보여 사용자가 항목을 직접 찾을 수 있게 합니다.",
+  "앱 번역이 어색해도 중국어 원문을 함께 보여 항목을 찾기 쉽게 합니다.",
 ];
 
 export default async function GuidePage() {
@@ -78,10 +78,10 @@ export default async function GuidePage() {
   ] as const;
 
   const pageLinks = [
-    { href: "#recommended", title: "가이드" },
-    { href: "#all", title: "모든 설정" },
-    { href: "#quick-commands", title: "단축 명령 검색" },
-    { href: "#translation", title: "번역 기준" },
+    { href: "#recommended", title: "추천 설정" },
+    { href: "#all", title: "전체 설정" },
+    { href: "#quick-commands", title: "명령 찾기" },
+    { href: "#translation", title: "표현 원칙" },
   ] as const;
 
   return (
@@ -93,10 +93,10 @@ export default async function GuidePage() {
         <div className="grid gap-8 px-6 py-7 sm:px-8 sm:py-8 2xl:grid-cols-[minmax(0,1fr)_620px] 2xl:items-center">
           <div>
             <Badge className="bg-white/12 text-white ring-1 ring-white/15">
-              TSL8 설정 가이드
+              TSL8 설정 안내
             </Badge>
             <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl xl:text-[3.75rem]">
-              TSL8 설정 가이드
+              TSL8 설정 안내
             </h1>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
@@ -106,7 +106,7 @@ export default async function GuidePage() {
                   "rounded-full bg-white text-slate-950 hover:bg-white/95",
                 )}
               >
-                모든 설정 보기
+                전체 설정 보기
               </a>
               <a
                 href="#quick-commands"
@@ -115,7 +115,7 @@ export default async function GuidePage() {
                   "rounded-full border border-white/18 bg-white/10 text-white hover:bg-white/16",
                 )}
               >
-                단축 명령 검색
+                명령 찾기
               </a>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default async function GuidePage() {
 
       <Card>
         <CardHeader className="pb-4">
-          <CardTitle className="text-[2rem]">페이지 탐색</CardTitle>
+          <CardTitle className="text-[2rem]">바로가기</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {pageLinks.map((item) => (
@@ -164,7 +164,7 @@ export default async function GuidePage() {
         <CardHeader className="pb-4">
           <div className="flex items-center gap-3">
             <BookOpenText className="size-5 text-[var(--tsl-teal)]" />
-            <CardTitle className="text-[2rem]">추천 시작 설정</CardTitle>
+            <CardTitle className="text-[2rem]">추천 설정</CardTitle>
           </div>
         </CardHeader>
         <CardContent className="grid gap-4 xl:grid-cols-2 2xl:grid-cols-4">
@@ -178,9 +178,9 @@ export default async function GuidePage() {
               </div>
               <div className="no-scrollbar -mx-1 mt-2 overflow-x-auto px-1 pb-1">
                 <div className="flex min-w-max gap-2">
-                  {row.labelZh ? <Badge variant="secondary">中文: {row.labelZh}</Badge> : null}
+                  {row.labelZh ? <Badge variant="secondary">중국어: {row.labelZh}</Badge> : null}
                   {row.labelKoApp ? (
-                    <Badge variant="secondary">앱 표기: {row.labelKoApp}</Badge>
+                    <Badge variant="secondary">앱 번역: {row.labelKoApp}</Badge>
                   ) : null}
                 </div>
               </div>
@@ -202,14 +202,14 @@ export default async function GuidePage() {
           <CardHeader>
             <div className="flex flex-wrap items-center gap-3">
               <SlidersHorizontal className="size-5 text-[var(--tsl-teal)]" />
-              <CardTitle>모든 설정</CardTitle>
+              <CardTitle>전체 설정</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
             <Badge>AP 보조 {tsl8ApAssistParams.rows.length}개</Badge>
             <Badge>기본 기능 {tsl8BasicSettings.rows.length}개</Badge>
-            <Badge variant="secondary">중국어 원문 포함</Badge>
-            <Badge variant="secondary">앱 표기 포함</Badge>
+            <Badge variant="secondary">중국어 표시</Badge>
+            <Badge variant="secondary">앱 번역 표시</Badge>
           </CardContent>
         </Card>
 
@@ -221,7 +221,7 @@ export default async function GuidePage() {
         <CardHeader>
           <div className="flex flex-wrap items-center gap-3">
             <ListChecks className="size-5 text-[var(--tsl-teal)]" />
-            <CardTitle>단축 명령 검색</CardTitle>
+            <CardTitle>단축 명령 찾기</CardTitle>
           </div>
         </CardHeader>
         <CardContent>
@@ -233,7 +233,7 @@ export default async function GuidePage() {
         <CardHeader>
           <div className="flex flex-wrap items-center gap-3">
             <Languages className="size-5 text-[var(--tsl-teal)]" />
-            <CardTitle>번역 기준</CardTitle>
+            <CardTitle>표현 원칙</CardTitle>
           </div>
         </CardHeader>
         <CardContent className="grid gap-3 md:grid-cols-2">

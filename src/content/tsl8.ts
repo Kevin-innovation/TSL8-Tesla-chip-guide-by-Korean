@@ -20,12 +20,12 @@ export type SettingSection = {
 
 export const tsl8ApAssistParams: SettingSection = {
   id: "ap-assist-params",
-  title: "AP 보조 매개변수 설정",
+  title: "AP 보조 세부 설정",
   titleZh: "AP辅助参数设置",
   rows: [
     {
       id: "ap_auto_assist",
-      label: "AP 자동 지원",
+      label: "AP 자동 보조",
       labelKoApp: "AP 자동 지원",
       labelZh: "AP自动辅助",
       valueExample: "AP 따라가기 (기본값)",
@@ -33,15 +33,15 @@ export const tsl8ApAssistParams: SettingSection = {
     },
     {
       id: "ap_assist_mode",
-      label: "AP 지원 방식",
+      label: "AP 보조 방식",
       labelKoApp: "AP 지원 방법",
       labelZh: "AP辅助方式",
       valueExample: "무감지 보조",
-      help: "앱에서 표시되는 보조 방식 옵션을 선택합니다.",
+      help: "AP 보조 동작 방식을 고르는 옵션입니다.",
     },
     {
       id: "module_auto_op",
-      label: "모듈 자동 조작",
+      label: "자동 조작 입력",
       labelKoApp: "모듈 자동 조작",
       labelZh: "模块自动操作",
       valueExample: "오른쪽 스크롤휠 - 속도",
@@ -57,7 +57,7 @@ export const tsl8ApAssistParams: SettingSection = {
     },
     {
       id: "wheel_random",
-      label: "랜덤 주기 사용",
+      label: "주기 랜덤 적용",
       labelKoApp: "롤러 랜덤 시간",
       labelZh: "滚轮随机时间",
       valueExample: "켜기 (기본값)",
@@ -73,7 +73,7 @@ export const tsl8ApAssistParams: SettingSection = {
     },
     {
       id: "inc_dec_type",
-      label: "자동 증감 유형",
+      label: "자동 증감 순서",
       labelKoApp: "자동 곱하기 유형",
       labelZh: "自动加减类型",
       valueExample: "먼저 줄이고, 그 다음 늘리기 (기본값)",
@@ -89,7 +89,7 @@ export const tsl8BasicSettings: SettingSection = {
   rows: [
     {
       id: "module_master",
-      label: "모듈 전체 스위치",
+      label: "모듈 전체 켜기/끄기",
       labelKoApp: "모듈 총 스위치",
       labelZh: "模块总开关",
       valueExample: "모듈 사용 (기본값)",
@@ -97,11 +97,11 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "ap_restore",
-      label: "AP 복구",
+      label: "AP 상태 복원",
       labelKoApp: "AP 복구",
       labelZh: "AP恢复",
       valueExample: "AP 따라가기",
-      help: "AP 상태에 맞춰 복구 동작을 수행하는 옵션입니다.",
+      help: "AP 상태에 맞춰 설정을 다시 맞추는 옵션입니다.",
     },
     {
       id: "one_key_ap",
@@ -122,7 +122,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "eap_assist",
-      label: "EAP 보조",
+      label: "EAP 보조 기능",
       labelKoApp: "EAP 지원",
       labelZh: "EAP辅助",
       valueExample: "끄기 (기본값)",
@@ -148,7 +148,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "manual_high_beam",
-      label: "수동 상향등",
+      label: "상향등 수동 제어",
       labelKoApp: "수동 광경",
       labelZh: "手动远光",
       valueExample: "끄기 (기본값)",
@@ -164,7 +164,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "high_beam_strobe_speed",
-      label: "상향등 스트로브(빠른 점멸) 속도",
+      label: "상향등 빠른 점멸 속도",
       labelKoApp: "원광 폭발 속도",
       labelZh: "远光爆闪速度",
       valueExample: "끄기 (기본값)",
@@ -173,7 +173,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "front_fog_strobe",
-      label: "전면 안개등 스트로브(빠른 점멸)",
+      label: "앞 안개등 빠른 점멸",
       labelKoApp: "전면 스무드램프가 폭발하다",
       labelZh: "前雾灯爆闪",
       valueExample: "끄기 (기본값)",
@@ -182,7 +182,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "rear_fog_strobe",
-      label: "후방 안개등 스트로브(빠른 점멸)",
+      label: "뒤 안개등 빠른 점멸",
       labelKoApp: "뒷미래등이 깜박거리다",
       labelZh: "后雾灯爆闪",
       valueExample: "끄기 (기본값)",
@@ -191,7 +191,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "low_speed_beep",
-      label: "저속 경고음(가벼운 경적)",
+      label: "저속 경고음",
       labelKoApp: "낮은 속도의 가벼운 휘파람",
       labelZh: "低速轻鸣笛",
       valueExample: "끄기 (기본값)",
@@ -209,7 +209,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "horn_link_high_beam",
-      label: "경적 → 상향등 연동",
+      label: "경적 울릴 때 상향등 연동",
       labelKoApp: "호파가 원광을 연결하다.",
       labelZh: "喇叭联动远光",
       valueExample: "끄기 (기본값)",
@@ -218,7 +218,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "high_beam_link_horn",
-      label: "상향등 → 경적 연동",
+      label: "상향등 켤 때 경적 연동",
       labelKoApp: "원광연동 호어",
       labelZh: "远光联动喇叭",
       valueExample: "끄기 (기본값)",
@@ -251,7 +251,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "energy_recovery",
-      label: "에너지 회수 제동(회생제동) 설정",
+      label: "회생제동 설정",
       labelKoApp: "에너지 회수 브레이크",
       labelZh: "能量回收制动",
       valueExample: "차량 설정(기본값)",
@@ -260,7 +260,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "stop_mode_setting",
-      label: "정지 모드 설정(홀드/롤/크립 등)",
+      label: "정지 모드 설정",
       labelKoApp: "정지 모드 설정",
       labelZh: "停止模式设置",
       valueExample: "차량 설정(기본값)",
@@ -287,7 +287,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "passenger_easy_entry",
-      label: "조수석 편의 승하차",
+      label: "조수석 편한 승하차",
       labelKoApp: "부운전자가 출입이 편리하다",
       labelZh: "副驾便利进出",
       valueExample: "조수석 안전벨트 해제 시",
@@ -295,7 +295,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "handle_frunk",
-      label: "도어핸들 스위치: 앞 트렁크",
+      label: "도어핸들 스위치: 프렁크",
       labelKoApp: "문 손잡이 스위치 앞 트렁크",
       labelZh: "门把手开关前备箱",
       valueExample: "5초 길게 당기기",
@@ -328,7 +328,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "reverse_rear_fog",
-      label: "후진 후 후방 안개등 조명",
+      label: "후진 후 뒤 안개등 켜기",
       labelKoApp: "역차 후의 안개등 조명",
       labelZh: "倒车后雾灯照明",
       valueExample: "끄기 (기본값)",
@@ -336,7 +336,7 @@ export const tsl8BasicSettings: SettingSection = {
     },
     {
       id: "turn_assist_light",
-      label: "전환 보조 조명",
+      label: "회전 보조 조명",
       labelKoApp: "조종 조명",
       labelZh: "转向辅助照明",
       valueExample: "끄기 (기본값)",

@@ -1,18 +1,10 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
 import AppHeader from "@/components/AppHeader";
-import { getSessionCookieName, verifySessionToken } from "@/lib/auth";
 
-export default async function AppLayout({
+export default function AppLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(getSessionCookieName())?.value;
-  if (!token || !verifySessionToken(token)) redirect("/gate");
-
   return (
     <div className="min-h-dvh bg-[radial-gradient(circle_at_top,_rgba(104,182,166,0.16),_transparent_36%),linear-gradient(180deg,_rgba(255,255,255,0.8),_rgba(247,250,249,1))] dark:bg-[radial-gradient(circle_at_top,_rgba(74,168,151,0.22),_transparent_30%),linear-gradient(180deg,_rgba(7,18,20,0.96),_rgba(7,18,20,1))]">
       <AppHeader />

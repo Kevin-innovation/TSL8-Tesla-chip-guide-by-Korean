@@ -39,9 +39,9 @@ export default function SettingsSectionCard({ section }: { section: SettingSecti
                 </div>
                 <div className="no-scrollbar -mx-1 mt-2 overflow-x-auto px-1 pb-1">
                   <div className="flex min-w-max gap-2">
-                    {row.labelZh ? <Badge variant="secondary">中文: {row.labelZh}</Badge> : null}
+                    {row.labelZh ? <Badge variant="secondary">중국어: {row.labelZh}</Badge> : null}
                     {row.labelKoApp ? (
-                      <Badge variant="secondary">앱 표기: {row.labelKoApp}</Badge>
+                      <Badge variant="secondary">앱 번역: {row.labelKoApp}</Badge>
                     ) : null}
                   </div>
                 </div>

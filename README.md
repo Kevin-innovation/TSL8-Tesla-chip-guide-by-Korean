@@ -1,14 +1,18 @@
-## Access Gate (인증번호)
+TSL 설정 공유 사이트 (🚗 대구•경북 테슬라 오너모임 by 하쿠)
 
-- `TSL_ACCESS_CODES`: 쉼표로 구분한 인증번호 목록
-- `TSL_AUTH_SECRET`: 세션 쿠키 서명용 시크릿(프로덕션에서 반드시 변경)
+## Getting Started
+
+개발 서버 실행:
+
+```bash
+npm run dev
+```
+
+브라우저에서 [http://localhost:3022](http://localhost:3022) 접속.
 
 ## Deploy (Vercel)
 
-Vercel 프로젝트 환경변수에 아래 값을 추가합니다.
-
-- `TSL_ACCESS_CODES`
-- `TSL_AUTH_SECRET`
+추가 환경변수 없이 바로 배포할 수 있습니다.
 
 ## Notes
 
