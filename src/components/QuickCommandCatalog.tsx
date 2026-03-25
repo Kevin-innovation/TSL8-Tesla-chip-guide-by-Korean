@@ -10,6 +10,49 @@ type Tab = "trigger" | "action";
 
 type CategoryStat = { name: string; count: number };
 
+const ACTION_CATEGORY_ORDER = [
+  "좌석 제어",
+  "좌석 메모리 (신 SX에 적합)",
+  "문 제어",
+  "보조운전",
+  "백미러",
+  "진도 제어",
+  "배터리 & 충전",
+  "잠금 & 잠금 해제",
+  "차량 제어",
+  "중지 모드",
+  "조명 제어",
+  "안개등 제어",
+  "스피커 제어",
+  "멀티미디어 제어",
+  "모듈 제어",
+  "4G 네트워크 제어",
+  "행복 마프 - 차량 LED 화면",
+] as const;
+
+const TRIGGER_CATEGORY_ORDER = [
+  "조명 버튼 (신 SX에 적합)",
+  "허리 받침 버튼 (새로운 SX에 적합)",
+  "롤러 버튼",
+  "조합 버튼",
+  "창문 버튼",
+  "스피커 버튼",
+  "뒷좌석 다운 버튼 (일반 Y)",
+  "면라이트 스탠드 (일반 3Y)",
+  "면라이트 버튼 (신 3YSX)",
+  "음성 버튼 (새로운 3YSX)",
+  "카메라 버튼 (신형 3YSX)",
+  "차량 사건",
+  "자동차 속도 사건",
+  "핸들 이벤트",
+  "보안 사건 (TSL8/9)",
+  "조명 사건",
+  "차 문 사건",
+  "변속 이벤트",
+  "안전벨트 이벤트 (신 SX에 적합)",
+  "좌석 이벤트 (신 SX에 적합)",
+] as const;
+
 function normalize(text: string): string {
   return text.replace(/\s+/g, " ").trim();
 }
@@ -27,15 +70,23 @@ function toSearchHaystack(item: Tsl6Item): string {
     .toLowerCase();
 }
 
-function buildCategories(items: Tsl6Item[]): CategoryStat[] {
+function buildCategories(items: Tsl6Item[], tab: Tab): CategoryStat[] {
   const map = new Map<string, number>();
   for (const item of items) {
     const category = normalize(item.categoryKo || "기타") || "기타";
     map.set(category, (map.get(category) ?? 0) + 1);
   }
+  const order = tab === "action" ? ACTION_CATEGORY_ORDER : TRIGGER_CATEGORY_ORDER;
+  const orderMap = new Map<string, number>(order.map((name, index) => [name, index]));
+
   return [...map.entries()]
     .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count);
+    .sort((a, b) => {
+      const aOrder = orderMap.get(a.name) ?? Number.MAX_SAFE_INTEGER;
+      const bOrder = orderMap.get(b.name) ?? Number.MAX_SAFE_INTEGER;
+      if (aOrder !== bOrder) return aOrder - bOrder;
+      return a.name.localeCompare(b.name, "ko");
+    });
 }
 
 export default function QuickCommandCatalog({
@@ -60,7 +111,7 @@ export default function QuickCommandCatalog({
     return includeProhibited ? baseItems : baseItems.filter((i) => !i.prohibited);
   }, [baseItems, includeProhibited, tab]);
 
-  const categories = useMemo(() => buildCategories(items), [items]);
+  const categories = useMemo(() => buildCategories(items, tab), [items, tab]);
   const totalCount = items.length;
 
   const safeCategory = useMemo(() => {
@@ -233,9 +284,11 @@ export default function QuickCommandCatalog({
                   <div className="mt-2">
                     <Badge variant="secondary">앱 번역: {appLabel}</Badge>
                   </div>
-                  <div className="mt-2">
-                    <Badge variant="secondary">중국어: {item.zh}</Badge>
-                  </div>
+                  {item.zh ? (
+                    <div className="mt-2">
+                      <Badge variant="secondary">중국어: {item.zh}</Badge>
+                    </div>
+                  ) : null}
                 </div>
 
                 <div className="shrink-0 text-right">

@@ -32,19 +32,11 @@ export const tsl8ApAssistParams: SettingSection = {
       help: "AP 상태에 맞춰 보조 동작을 따라가도록 설정합니다.",
     },
     {
-      id: "ap_assist_mode",
-      label: "AP 보조 방식",
-      labelKoApp: "AP 지원 방법",
-      labelZh: "AP辅助方式",
-      valueExample: "무감지 보조",
-      help: "AP 보조 동작 방식을 고르는 옵션입니다.",
-    },
-    {
       id: "module_auto_op",
       label: "자동 조작 입력",
       labelKoApp: "모듈 자동 조작",
       labelZh: "模块自动操作",
-      valueExample: "오른쪽 스크롤휠 - 속도",
+      valueExample: "왼쪽 롤러 - 볼륨 (기본값)",
       help: "자동 조작에 사용할 입력(예: 오른쪽 스크롤휠)을 선택합니다.",
     },
     {
@@ -60,7 +52,7 @@ export const tsl8ApAssistParams: SettingSection = {
       label: "주기 랜덤 적용",
       labelKoApp: "롤러 랜덤 시간",
       labelZh: "滚轮随机时间",
-      valueExample: "켜기 (기본값)",
+      valueExample: "열기 (기본값)",
       help: "주기를 고정하지 않고 랜덤으로 적용할지 여부입니다.",
     },
     {
@@ -78,6 +70,38 @@ export const tsl8ApAssistParams: SettingSection = {
       labelZh: "自动加减类型",
       valueExample: "먼저 줄이고, 그 다음 늘리기 (기본값)",
       help: "자동 조작 시 ‘줄이기/늘리기’ 적용 순서를 선택합니다.",
+    },
+  ],
+};
+
+export const tsl8BasicParameterSettings: SettingSection = {
+  id: "basic-parameter-settings",
+  title: "기본 매개변수 설정",
+  titleZh: "基本参数设置",
+  rows: [
+    {
+      id: "hint_volume",
+      label: "힌트 음량",
+      labelKoApp: "힌트 음량",
+      labelZh: "提示音量",
+      valueExample: "100% (기본값)",
+      help: "모듈 안내음/힌트음의 출력 크기를 조절합니다.",
+    },
+    {
+      id: "led_light_switch",
+      label: "LED 라이트 스위치",
+      labelKoApp: "LED 라이트 스위치",
+      labelZh: "LED灯光开关",
+      valueExample: "열기 (기본값)",
+      help: "외부 LED 조명 관련 기능의 사용 여부를 전환합니다.",
+    },
+    {
+      id: "bluetooth_signal_strength",
+      label: "블루투스 신호 강도",
+      labelKoApp: "블루투스 신호 강도",
+      labelZh: "蓝牙信号强度",
+      valueExample: "강 (기본값)",
+      help: "블루투스 연결 강도/민감도 관련 기본값입니다.",
     },
   ],
 };
@@ -317,30 +341,6 @@ export const tsl8BasicSettings: SettingSection = {
       valueExample: "켜기",
       help: "실험/베타 기능을 활성화합니다. 동작이 바뀌거나 불안정할 수 있습니다.",
       caution: "warning",
-    },
-    {
-      id: "ac_auto_dry",
-      label: "에어컨 자동 건조",
-      labelKoApp: "에어컨 자동 건조",
-      labelZh: "空调自动干燥",
-      valueExample: "5분 건조",
-      help: "일정 조건에서 에어컨 건조를 수행하도록 설정합니다.",
-    },
-    {
-      id: "reverse_rear_fog",
-      label: "후진 후 뒤 안개등 켜기",
-      labelKoApp: "역차 후의 안개등 조명",
-      labelZh: "倒车后雾灯照明",
-      valueExample: "끄기 (기본값)",
-      help: "후진 후 후방 안개등 조명 관련 옵션입니다.",
-    },
-    {
-      id: "turn_assist_light",
-      label: "회전 보조 조명",
-      labelKoApp: "조종 조명",
-      labelZh: "转向辅助照明",
-      valueExample: "끄기 (기본값)",
-      help: "회전/방향지시 조건에서 보조 조명을 켜는 옵션입니다.",
     },
   ],
 };

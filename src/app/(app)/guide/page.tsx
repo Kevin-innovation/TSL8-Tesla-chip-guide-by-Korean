@@ -12,7 +12,11 @@ import SettingsSectionCard from "@/components/SettingsSection";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { tsl8ApAssistParams, tsl8BasicSettings } from "@/content/tsl8";
+import {
+  tsl8ApAssistParams,
+  tsl8BasicParameterSettings,
+  tsl8BasicSettings,
+} from "@/content/tsl8";
 import { loadTsl6Data } from "@/lib/tsl6";
 import { cn } from "@/lib/utils";
 
@@ -98,6 +102,9 @@ export default async function GuidePage() {
             <h1 className="mt-3 max-w-full break-keep text-[2.45rem] leading-none font-black tracking-tight sm:mt-4 sm:text-5xl xl:text-[3.75rem]">
               TSL8 설정 안내
             </h1>
+            <p className="mt-3 max-w-3xl break-keep text-sm leading-6 text-white/78 sm:text-base sm:leading-7">
+              본 사이트는 TSL8 버전, 앱 번역본 기준으로 작성되었습니다.
+            </p>
             <div className="mt-5 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:mt-6 sm:flex sm:flex-wrap">
               <a
                 href="#all"
@@ -123,6 +130,7 @@ export default async function GuidePage() {
           <div className="grid grid-cols-1 gap-3 min-[380px]:grid-cols-2">
             {overviewStats.map((item) => {
               const Icon = item.icon;
+
               return (
                 <div
                   key={item.label}
@@ -214,13 +222,15 @@ export default async function GuidePage() {
           <CardContent className="flex flex-wrap gap-2">
             <Badge>AP 보조 {tsl8ApAssistParams.rows.length}개</Badge>
             <Badge>기본 기능 {tsl8BasicSettings.rows.length}개</Badge>
+            <Badge>기본 매개변수 {tsl8BasicParameterSettings.rows.length}개</Badge>
             <Badge variant="secondary">중국어 표시</Badge>
             <Badge variant="secondary">앱 번역 표시</Badge>
           </CardContent>
         </Card>
 
-        <SettingsSectionCard section={tsl8ApAssistParams} />
         <SettingsSectionCard section={tsl8BasicSettings} />
+        <SettingsSectionCard section={tsl8BasicParameterSettings} />
+        <SettingsSectionCard section={tsl8ApAssistParams} />
       </section>
 
       <Card id="quick-commands" className="scroll-mt-32">
